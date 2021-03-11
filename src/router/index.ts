@@ -23,5 +23,21 @@ export default route<Store<StateInterface>>(function ({ Vue }) {
     base: process.env.VUE_ROUTER_BASE
   });
 
+  Router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+      const vuexString = localStorage.getItem('vuex');
+
+      const vuex = vuexString ? JSON.parse(vuexString) : null;
+
+      if(vuex) {
+        vuex?.auth?.userCurrent?._id ? next() : next({ name: "login" });
+      } else {
+        next({ name: "login" })
+      }
+    } else {
+      next();
+    }
+  });
+
   return Router;
 })

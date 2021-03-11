@@ -10,6 +10,14 @@
           </q-avatar>
           ePayco
         </q-toolbar-title>
+
+        <q-btn
+          flat
+          color="white"
+          icon="logout"
+          label="Salir"
+          @click="onClick"
+        />
       </q-toolbar>
 
       <q-tabs align="left">
@@ -30,10 +38,17 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
+import { vueRouter } from 'src/boot/router';
 
 export default defineComponent({
   name: 'HomeLayout',
   setup() {
+    const onClick = async () => {
+      localStorage.removeItem('vuex');
+
+      await vueRouter.push({ name: 'login' });
+    };
+
     const tabs = [
       {
         to: { name: 'profile' },
@@ -52,7 +67,7 @@ export default defineComponent({
         label: 'Pagos'
       }
     ];
-    return { tabs };
+    return { tabs, onClick };
   }
 });
 </script>

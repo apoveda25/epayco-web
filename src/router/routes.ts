@@ -12,10 +12,30 @@ const routes: RouteConfig[] = [
   {
     path: '/', component: () => import('src/layouts/HomeLayout.vue'),
     children: [
-      { path: '/profile', name: 'profile', component: () => import('src/pages/profile/Profile.vue') },
-      { path: '/wallet', name: 'wallet', component: () => import('src/pages/wallet/Wallet.vue') },
-      { path: '/recharges', name: 'recharges', component: () => import('src/pages/recharges/Recharges.vue') },
-      { path: '/payments', name: 'payments', component: () => import('src/pages/payments/Payments.vue') },
+      {
+        path: '/profile',
+        name: 'profile',
+        meta: { requiresAuth: true },
+        component: () => import('src/pages/profile/Profile.vue')
+      },
+      {
+        path: '/wallet',
+        name: 'wallet',
+        meta: { requiresAuth: true },
+        component: () => import('src/pages/wallet/Wallet.vue')
+      },
+      {
+        path: '/recharges',
+        name: 'recharges',
+        meta: { requiresAuth: true },
+        component: () => import('src/pages/recharges/Recharges.vue')
+      },
+      {
+        path: '/payments',
+        name: 'payments',
+        meta: { requiresAuth: true },
+        component: () => import('src/pages/payments/Payments.vue')
+      },
     ]
   },
 

@@ -43,7 +43,10 @@ export default defineComponent({
     const { loginAction } = useActions(['loginAction']);
 
     const onSubmitLogin = async () => {
-      loginAction(inputsLogin);
+      await loginAction(inputsLogin);
+
+      inputsLogin.email = '';
+      inputsLogin.password = '';
 
       await vueRouter.push({ name: 'profile' });
     };

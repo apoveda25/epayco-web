@@ -1,5 +1,6 @@
 import { store } from 'quasar/wrappers';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 import auth from './auth/index';
 import { AuthStateInterface } from './auth/state';
 import payment from './payments/index';
@@ -35,6 +36,7 @@ export default store(function ({ Vue }) {
     modules: {
       auth, wallet, recharge, user, payment
     },
+    plugins: [createPersistedState()],
 
     // enable strict mode (adds overhead!)
     // for dev mode only

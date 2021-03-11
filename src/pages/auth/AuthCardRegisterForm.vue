@@ -85,7 +85,7 @@ export default defineComponent({
     const onSubmitRegister = async () => {
       registerAction(inputsRegister);
 
-      await vueRouter.push({ name: 'home' });
+      await vueRouter.push({ name: 'profile' });
     };
 
     return {
